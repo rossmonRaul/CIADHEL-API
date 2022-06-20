@@ -1,4 +1,4 @@
-import sql from 'mssql';
+var sql = require('mssql');
 
 import config from '../config';
 
@@ -8,17 +8,17 @@ const dbSettings = {
     server   : config.server_db,
     database : config.name_db,
     options  : {
-        encrypt: true, // for azure
+        encrypt: false, // for azure
         trustServerCertificate: true // change to true for local dev / self-signed certs
     }
 };
 
-export const getConnetion = async ()  => {
+export const getConnetion = async () => {
 
     try {
-       return await sql.connect(dbSettings);
-    } catch (error : any) {
-        throw new Error( error );
+      return await sql.connect(dbSettings);   
+    } catch (error: any) {
+        throw new Error(error);
     }
 
 }

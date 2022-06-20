@@ -65,3 +65,36 @@ export const postAutenticationLogin =async (req: Request, res: Response) =>
     }
 }
 
+export const getUsersInfo = async (req: Request, res: Response) => {
+
+    try {
+
+        const pool = await getConnetion();
+
+        const { recordset } = await pool.request().execute('SP_ListarUsuario');
+
+        pool.close();
+
+        if (recordset.length === 0) {
+
+            return res.status(404).json({
+                ok: false,
+                length: 0,
+                msg: 'There are no users information'
+            });
+        }
+
+        return res.status(200).json({
+            ok: true,
+            length: recordset.length,
+            airports: recordset
+        })
+
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({
+            ok: false,
+            msg: 'Error on get users information'
+        });
+    }
+}
