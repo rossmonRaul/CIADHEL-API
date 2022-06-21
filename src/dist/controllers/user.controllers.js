@@ -119,6 +119,79 @@ const getUsersInfobyId = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.getUsersInfobyId = getUsersInfobyId;
+
+const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        //variables
+        let {  Nombre, Apellido1, Apellido2, Cedula, ID_Aeropuerto, Correo, Telefono, FechaNacimiento, Contraseña} = req.body;
+        const pool = yield(0, connection_1.getConnetion)();
+        console.log(req.body);
+        const { recordset } = yield pool
+            .request()
+           
+            .input("Nombre", mssql_1.default.VarChar(25), Nombre)
+            .input("Apellido1", mssql_1.default.VarChar(25), Apellido1)
+            .input("Apellido2", mssql_1.default.VarChar(25), Apellido2)
+            .input("Cedula", mssql_1.default.VarChar(10), Cedula)
+            .input("ID_Aeropuerto", mssql_1.default.Int, ID_Aeropuerto)
+            .input("Correo", mssql_1.default.VarChar(25), Correo)
+            .input("Telefono", mssql_1.default.Int, Telefono)
+            .input("FechaNacimiento", mssql_1.default.Date, FechaNacimiento)
+            .input("Contraseña", mssql_1.default.VarChar(25), Contraseña)
+            .execute('SP_Usuarios_Agregar');
+        pool.close();
+        if (recordset === undefined) {
+            return res.status(404).json({
+                ok: false,
+                msg: 'Error insert user'
+            });
+        }
+        return res.status(200).json({
+            ok: true,
+            msg: 'Ok'
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({
+            ok: false,
+            msg: "Request Error, can't insert user",
+        });
+    }
+});
+exports.postUser = postUser;
+
+const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { ID_USR } = req.params; // required parameter IDAeropuerto
+    try {
+        const pool = yield(0, connection_1.getConnetion)();
+        const { recordset } = yield pool
+            .request()
+            .input("ID_USR", mssql_1.default.Int, ID_USR)
+            
+            .execute('SP_Usuarios_Eliminar');
+        pool.close();
+        if (recordset === undefined) {
+            return res.status(404).json({
+                ok: false,
+                msg: 'Error delete a user'
+            });
+        }
+        return res.status(200).json({
+            ok: true,
+            msg: 'Ok'
+        });
+    }
+    catch (err) {
+        console.error(err);
+        return res.status(500).json({
+            ok: false,
+            msg: "Request Error, cant delete a user",
+        });
+    }
+});
+exports.deleteUser = deleteUser;
+
+
 const putEditUsers = (req, res) => __awaiter(void 0, void 0, void 0, function*() {
     try {
         //variables
