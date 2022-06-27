@@ -96,7 +96,7 @@ const getUsersInfobyId = (req, res) => __awaiter(void 0, void 0, void 0, functio
         const { id } = req.params;
         const pool = yield(0, connection_1.getConnetion)();
         const { recordset } = yield pool.request()
-            .input('cedula', mssql_1.default.Int, id)
+            .input('id', mssql_1.default.Int, id)
             .execute('SP_ListarUsuariobyID');
         pool.close();
         if (recordset.length === 0) {
@@ -122,12 +122,13 @@ exports.getUsersInfobyId = getUsersInfobyId;
 const putEditUsers = (req, res) => __awaiter(void 0, void 0, void 0, function*() {
     try {
         //variables
-        let { ID_USR, Nombre, Apellido1, Apellido2, Cedula, ID_Aeropuerto, Correo, Telefono, FechaNacimiento, } = req.body;
+        let { ID_USR, Contrasena, Nombre, Apellido1, Apellido2, Cedula, ID_Aeropuerto, Correo, Telefono, FechaNacimiento, } = req.body;
         const pool = yield(0, connection_1.getConnetion)();
-        console.log(req.body);
+        console.log(ID_USR);
         const { recordset } = yield pool
             .request()
             .input("ID_USR", mssql_1.default.Int, ID_USR)
+            .input("Contrasena", mssql_1.default.VarChar(25), Contrasena)
             .input("Nombre", mssql_1.default.VarChar(25), Nombre)
             .input("Apellido1", mssql_1.default.VarChar(25), Apellido1)
             .input("Apellido2", mssql_1.default.VarChar(25), Apellido2)
@@ -138,16 +139,18 @@ const putEditUsers = (req, res) => __awaiter(void 0, void 0, void 0, function*()
             .input("FechaNacimiento", mssql_1.default.Date, FechaNacimiento)
             .execute('SP_EditarUsuario');
         pool.close();
-        if (recordset === undefined) {
-            return res.status(404).json({
-                ok: false,
-                msg: 'Error update user'
+        for (const item of recordset) {
+            if (item.msg != 'Usuario actualizado') {
+                return res.status(404).json({
+                    ok: false,
+                    msg: 'Error update user'
+                });
+            }
+            return res.status(200).json({
+                ok: true,
+                msg: 'Ok'
             });
         }
-        return res.status(200).json({
-            ok: true,
-            msg: 'Ok'
-        });
     } catch (err) {
         console.error(err);
         return res.status(500).json({
