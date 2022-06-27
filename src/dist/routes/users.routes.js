@@ -15,5 +15,7 @@ route.post('/login/:cedula/:password', [
 ], user_controllers_1.postAutenticationLogin);
 route.get('/UsersInfoID/:id', user_controllers_1.getUsersInfobyId);
 route.put('/EditarUsuario/', user_controllers_1.putEditUsers);
+route.post('/postUsuarios/', user_controllers_1.postUser);
+route.delete('/deleteUsuarios/:ID_USR', user_controllers_1.deleteUser);
 exports.default = route;
 //# sourceMappingURL=users.routes.js.map
