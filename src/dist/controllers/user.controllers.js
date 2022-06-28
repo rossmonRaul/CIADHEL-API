@@ -123,7 +123,7 @@ exports.getUsersInfobyId = getUsersInfobyId;
 const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         //variables
-        let {  Nombre, Apellido1, Apellido2, Cedula, ID_Aeropuerto, Correo, Telefono, FechaNacimiento, Contraseña} = req.body;
+        let {  Nombre, Apellido1, Apellido2, Cedula, Id_aeropuerto, Correo, Telefono, Fecha_nacimiento, Contraseña} = req.body;
         const pool = yield(0, connection_1.getConnetion)();
         console.log(req.body);
         const { recordset } = yield pool
@@ -133,10 +133,10 @@ const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             .input("Apellido1", mssql_1.default.VarChar(25), Apellido1)
             .input("Apellido2", mssql_1.default.VarChar(25), Apellido2)
             .input("Cedula", mssql_1.default.VarChar(10), Cedula)
-            .input("ID_Aeropuerto", mssql_1.default.Int, ID_Aeropuerto)
+            .input("Id_aeropuerto", mssql_1.default.Int, Id_aeropuerto)
             .input("Correo", mssql_1.default.VarChar(25), Correo)
             .input("Telefono", mssql_1.default.Int, Telefono)
-            .input("FechaNacimiento", mssql_1.default.Date, FechaNacimiento)
+            .input("Fecha_nacimiento", mssql_1.default.Date, Fecha_nacimiento)
             .input("Contraseña", mssql_1.default.VarChar(25), Contraseña)
             .execute('SP_Usuarios_Agregar');
         pool.close();
@@ -161,12 +161,12 @@ const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.postUser = postUser;
 
 const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { ID_USR } = req.params; // required parameter IDAeropuerto
+    const { Id_usr } = req.params; // required parameter IDAeropuerto
     try {
         const pool = yield(0, connection_1.getConnetion)();
         const { recordset } = yield pool
             .request()
-            .input("ID_USR", mssql_1.default.Int, ID_USR)
+            .input("Id_usr", mssql_1.default.Int, Id_usr)
             
             .execute('SP_Usuarios_Eliminar');
         pool.close();
@@ -195,21 +195,21 @@ exports.deleteUser = deleteUser;
 const putEditUsers = (req, res) => __awaiter(void 0, void 0, void 0, function*() {
     try {
         //variables
-        let { ID_USR, Contrasena, Nombre, Apellido1, Apellido2, Cedula, ID_Aeropuerto, Correo, Telefono, FechaNacimiento, } = req.body;
+        let { Id_usr, Contrasena, Nombre, Apellido1, Apellido2, Cedula, Id_aeropuerto, Correo, Telefono, Fecha_nacimiento, } = req.body;
         const pool = yield(0, connection_1.getConnetion)();
-        console.log(ID_USR);
+      
         const { recordset } = yield pool
             .request()
-            .input("ID_USR", mssql_1.default.Int, ID_USR)
+            .input("ID_USR", mssql_1.default.Int, Id_usr)
             .input("Contrasena", mssql_1.default.VarChar(25), Contrasena)
             .input("Nombre", mssql_1.default.VarChar(25), Nombre)
             .input("Apellido1", mssql_1.default.VarChar(25), Apellido1)
             .input("Apellido2", mssql_1.default.VarChar(25), Apellido2)
             .input("Cedula", mssql_1.default.VarChar(10), Cedula)
-            .input("ID_Aeropuerto", mssql_1.default.Int, ID_Aeropuerto)
+            .input("ID_Aeropuerto", mssql_1.default.Int, Id_aeropuerto)
             .input("Correo", mssql_1.default.VarChar(25), Correo)
             .input("Telefono", mssql_1.default.Int, Telefono)
-            .input("FechaNacimiento", mssql_1.default.Date, FechaNacimiento)
+            .input("FechaNacimiento", mssql_1.default.Date, Fecha_nacimiento)
             .execute('SP_EditarUsuario');
         pool.close();
         for (const item of recordset) {
