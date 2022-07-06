@@ -491,7 +491,7 @@ const putAnAirport = (req, res) => __awaiter(void 0, void 0, void 0, function*()
     }
 });
 exports.putAnAirport = putAnAirport;
-const getMeteorologywithScraping = async(req, res) => {
+const getMeteorologyByScrap = async(req, res) => {
     try {
         const { nombre } = req.params;
 
@@ -540,5 +540,5 @@ const getMeteorologywithScraping = async(req, res) => {
         });
     }
 };
-exports.getMeteorologywithScraping = getMeteorologywithScraping;
+exports.getMeteorologyByScrap = getMeteorologyByScrap;
 //# sourceMappingURL=airports.controllers.js.map
