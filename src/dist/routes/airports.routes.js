@@ -37,6 +37,6 @@ route.post('/favorito/', airports_controllers_1.postFavoriteAirports);
 route.delete('/favorito/:ID_Aeropuerto/:Identificador', airports_controllers_1.deleteFavoriteAirports);
 route.get('/favorito/:ID_Aeropuerto/:Identificador', airports_controllers_1.getValidateExist);
 route.get('/favorito/:Identificador', airports_controllers_1.getFavoritebyIdentificador);
-route.get('/clima_scrap/:nombre', airports_controllers_1.getMeteorologywithScraping);
+route.get('/clima_scrap/:nombre', airports_controllers_1.getMeteorologyByScrap);
 exports.default = route;
 //# sourceMappingURL=airports.routes.js.map
