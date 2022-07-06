@@ -40,6 +40,8 @@ exports.putAnAirport = exports.getAirportBySearch = exports.getAnAirportById = e
 const connection_1 = require("../database/connection");
 const connectionBDTokens_1 = require("../database/connectionBDTokens");
 const mssql_1 = __importStar(require("mssql"));
+const puppeteer = require('puppeteer');
+const { json } = require("express");
 const getFavoritebyIdentificador = (req, res) => __awaiter(void 0, void 0, void 0, function*() {
     try {
         const { Identificador } = req.params;
@@ -489,4 +491,54 @@ const putAnAirport = (req, res) => __awaiter(void 0, void 0, void 0, function*()
     }
 });
 exports.putAnAirport = putAnAirport;
+const getMeteorologyByScrap = async(req, res) => {
+    try {
+        const { nombre } = req.params;
+
+        const browser = await puppeteer.launch();
+
+        const page = await browser.newPage();
+        const page2 = await browser.newPage();
+
+        await page.goto(`https://metar-taf.com/es/metar-view/${nombre}`);
+        await page2.goto(`https://metar-taf.com/es/taf/${nombre}`)
+
+        const meteorology = {};
+
+        const metar = await page.evaluate(() => {
+
+            const tmp = document.querySelector('#metar code').innerText;
+            // tmp.author = document.querySelector('.author a').innerText;
+            return tmp;
+        })
+        meteorology.metar = metar;
+
+        const taf = await page2.evaluate(() => {
+            // const tmp = {};
+            const tmp = document.querySelector('#taf code').innerText;
+            // tmp.author = document.querySelector('.author a').innerText;
+            return tmp;
+        })
+        meteorology.taf = taf;
+        await browser.close();
+
+        if (meteorology === undefined) {
+            return res.status(404).json({
+                ok: false,
+                msg: 'There are no airports meteorology info '
+            });
+        }
+        return res.status(200).json({
+            ok: true,
+            airports: meteorology
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({
+            ok: false,
+            msg: 'Error on get an airports'
+        });
+    }
+};
+exports.getMeteorologyByScrap = getMeteorologyByScrap;
 //# sourceMappingURL=airports.controllers.js.map
