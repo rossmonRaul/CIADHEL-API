@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="./iconPlane.png" />
@@ -7,72 +8,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CIIADHEL REST API</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-avatar@1.0.3/dist/avatar.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    
+
 </head>
+
 <body class="container ms-12 mt-3 mb-5 me-12">
 
     <div class="title">
-       
+
         <div class="row">
 
             <div class="customAvatar">
-              <img class="avatar avatar-128 bg-light rounded-circle text-white p-2"
-                src="./iconCIIADHEL2.png">
+                <img class="avatar avatar-128 bg-light rounded-circle text-white p-2" src="./iconCIIADHEL2.png">
 
             </div>
 
             <div class="col">
-    
-              <div class="row">
-                <div class="customName">
-                    <p>CIIADHEL</p> 
-                </div>
-    
-                <div class="customIconsSocialNetwork">
-    
-                  <!-- <ul class="icons">
+
+                <div class="row">
+                    <div class="customName">
+                        <p>CIIADHEL</p>
+                    </div>
+
+                    <div class="customIconsSocialNetwork">
+
+                        <!-- <ul class="icons">
                     <li><a href="https://github.com/PereiraCC/CIIADHEL-API-REST.git" class="icon fab fa-github" target="_blank"></a></li>
                   </ul> -->
-            
+
+                    </div>
+
                 </div>
-    
-              </div>
-    
-              <div class="customBiograph">
-                <p>Este sitio web provee toda la información sobre la RESTful API para el proyecto CIIADHEL. Use esta pagina para el correcto consumo del RESTful API CIIADHEL.</p> 
-              </div>
-    
+
+                <div class="customBiograph">
+                    <p>Este sitio web provee toda la información sobre la RESTful API para el proyecto CIIADHEL. Use esta pagina para el correcto consumo del RESTful API CIIADHEL.</p>
+                </div>
+
             </div>
-          </div>
+        </div>
 
     </div>
 
     <hr />
     <div class="customBody">
-        
+
         <h3 class="h3">CIIADHEL RESTful API</h3>
 
         <br />
 
         <div class="col2">
-            <h4 class="h4">Versión  1.0.0</h4>
+            <h4 class="h4">Versión 1.0.0</h4>
         </div>
 
         <p>
-            En la versión preliminar V1.0.0 se presentan las rutas (aeropuertos - usuarios - notificaciones - Archivos - Favoritos) con sus respectivas acciones. A continuación, se presentan con mayor detalle el funcionamiento de estas acciones y la información que retornan.
-            En el siguiente botón puede encontrar una información más detallada con aspectos de consumo en diferentes lenguajes de programación y aspectos mas técnicos. 
+            En la versión preliminar V1.0.0 se presentan las rutas (aeropuertos - usuarios - notificaciones - Archivos - Favoritos) con sus respectivas acciones. A continuación, se presentan con mayor detalle el funcionamiento de estas acciones y la información que
+            retornan. En el siguiente botón puede encontrar una información más detallada con aspectos de consumo en diferentes lenguajes de programación y aspectos mas técnicos.
         </p>
 
         <div class="col3">
-            <a href="https://documenter.getpostman.com/view/14542124/UVeNo48P" class="btn btn-primary">Ver documentacion</a>
+            <a href="https://documenter.getpostman.com/view/19276410/UzQsw7Cj" class="btn btn-primary">Ver documentacion</a>
         </div>
 
         <br />
-        
+
         <div class="col2">
             <h4 class="h4">Rutas</h4>
         </div>
@@ -84,7 +84,7 @@
             <p class="h5">Autenticacion (Authentication)</p>
 
             <p>
-                Esta es la ruta de los Autenticacion (Users) donde contiene las siguientes acciones: 
+                Esta es la ruta de los Autenticacion (Users) donde contiene las siguientes acciones:
             </p>
 
             <ol>
@@ -103,7 +103,7 @@
                     </li>
                     <li>No requiere ninguna autorización (No token)</li>
                 </ul>
-                
+
                 <br />
 
                 <p><strong> Formato de la respuesta JSON (Preliminar) </strong></p>
@@ -121,7 +121,7 @@
             <p class="h5">Aeropuertos (Airports)</p>
 
             <p>
-                Esta es la ruta de los airports (Aeropuertos) donde contiene las siguientes acciones: 
+                Esta es la ruta de los airports (Aeropuertos) donde contiene las siguientes acciones:
             </p>
 
             <ol>
@@ -130,10 +130,7 @@
                     <li>
                         <strong>Obtener todos los aeropuertos</strong>
                     </li>
-                    <p class="customURL">GET: <a 
-                        href="https://ciiadhel-api-rest.herokuapp.com/api/airports" 
-                        target="_blank"
-                        class="customURL">
+                    <p class="customURL">GET: <a href="https://ciiadhel-api-rest.herokuapp.com/api/airports" target="_blank" class="customURL">
                         https://ciiadhel-api-rest.herokuapp.com/api/airports
                         </a>
                     </p>
@@ -141,23 +138,20 @@
                         <li>No requiere ningún parámetro</li>
                         <li>No requiere ninguna autorización (No token)</li>
                     </ul>
-                    
+
                     <br />
-    
+
                     <p><strong> Formato de la respuesta JSON </strong></p>
                     <pre id="JSONGetAllAirports" class="previewJson"></pre>
                 </div>
-               
+
                 <br />
 
                 <div>
                     <li>
                         <strong>Busqueda de los aeropuertos</strong>
                     </li>
-                    <p class="customURL">GET: <a 
-                        href="https://ciiadhel-api-rest.herokuapp.com/api/airports/search/ba" 
-                        target="_blank"
-                        class="customURL">
+                    <p class="customURL">GET: <a href="https://ciiadhel-api-rest.herokuapp.com/api/airports/search/ba" target="_blank" class="customURL">
                         https://ciiadhel-api-rest.herokuapp.com/api/airports/search/ba
                         </a>
                     </p>
@@ -165,23 +159,20 @@
                         <li>No requiere ningún parámetro</li>
                         <li>No requiere ninguna autorización (No token)</li>
                     </ul>
-                    
+
                     <br />
-    
+
                     <p><strong> Formato de la respuesta JSON </strong></p>
                     <pre id="JSONSearch" class="previewJson"></pre>
                 </div>
-            
+
                 <br />
 
                 <div>
                     <li>
                         <strong>Obtener todos los aeropuertos por el nombre</strong>
                     </li>
-                    <p class="customURL">GET: <a 
-                        href="https://ciiadhel-api-rest.herokuapp.com/api/airports/name/Batan" 
-                        target="_blank"
-                        class="customURL">
+                    <p class="customURL">GET: <a href="https://ciiadhel-api-rest.herokuapp.com/api/airports/name/Batan" target="_blank" class="customURL">
                         https://ciiadhel-api-rest.herokuapp.com/api/airports/name/Batan
                         </a>
                     </p>
@@ -194,23 +185,20 @@
                         </li>
                         <li>No requiere ninguna autorización (No token)</li>
                     </ul>
-    
+
                     <br />
-    
+
                     <p><strong> Formato de la respuesta JSON </strong></p>
                     <pre id="JSONGetAirportByName" class="previewJson"></pre>
                 </div>
-            
+
                 <br />
 
                 <div>
                     <li>
                         <strong>Obtener un aeropuerto por su Identificador (ID)</strong>
                     </li>
-                    <p class="customURL">GET: <a 
-                        href=" https://ciiadhel-api-rest.herokuapp.com/api/airports/id/15" 
-                        target="_blank"
-                        class="customURL">
+                    <p class="customURL">GET: <a href=" https://ciiadhel-api-rest.herokuapp.com/api/airports/id/15" target="_blank" class="customURL">
                          https://ciiadhel-api-rest.herokuapp.com/api/airports/id/15
                         </a>
                     </p>
@@ -223,23 +211,20 @@
                         </li>
                         <li>No requiere ninguna autorización (No token)</li>
                     </ul>
-    
+
                     <br />
-    
+
                     <p><strong> Formato de la respuesta JSON </strong></p>
                     <pre id="JSONGetAnAirportById" class="previewJson"></pre>
                 </div>
-                
+
                 <br />
 
                 <div>
                     <li>
                         <strong> Obtener el tamaño de los aeropuertos </strong>
                     </li>
-                    <p class="customURL">GET: <a 
-                        href=" https://ciiadhel-api-rest.herokuapp.com/api/airports/size" 
-                        target="_blank"
-                        class="customURL">
+                    <p class="customURL">GET: <a href=" https://ciiadhel-api-rest.herokuapp.com/api/airports/size" target="_blank" class="customURL">
                          https://ciiadhel-api-rest.herokuapp.com/api/airports/size
                         </a>
                     </p>
@@ -247,23 +232,20 @@
                         <li>No requiere ningún parámetro</li>
                         <li>No requiere ninguna autorización (No token)</li>
                     </ul>
-    
+
                     <br />
-    
+
                     <p><strong> Formato de la respuesta JSON </strong></p>
                     <pre id="JSONGetSizeAirports" class="previewJson"></pre>
                 </div>
-                
+
                 <br />
 
                 <div>
                     <li>
                         <strong>Actualizar un Aeropuerto</strong>
                     </li>
-                    <p class="customURL">PUT: <a 
-                        href=" https://ciiadhel-api-rest.herokuapp.com/api/airports/update/123456/27" 
-                        target="_blank"
-                        class="customURL">
+                    <p class="customURL">PUT: <a href=" https://ciiadhel-api-rest.herokuapp.com/api/airports/update/123456/27" target="_blank" class="customURL">
                          https://ciiadhel-api-rest.herokuapp.com/api/airports/update/123456/27
                         </a>
                     </p>
@@ -281,7 +263,7 @@
                     </ul>
 
                     <br />
-    
+
                     <p><strong> Formato del JSON para envio </strong></p>
                     <pre id="JSONUpdateAirport" class="previewJson"></pre>
                 </div>
@@ -292,10 +274,7 @@
                     <li>
                         <strong>Obtener los favoritos por el Identificador</strong>
                     </li>
-                    <p class="customURL">GET: <a 
-                        href=" https://ciiadhel-api-rest.herokuapp.com/api/airports/favorito/1/358240051111110" 
-                        target="_blank"
-                        class="customURL">
+                    <p class="customURL">GET: <a href=" https://ciiadhel-api-rest.herokuapp.com/api/airports/favorito/1/358240051111110" target="_blank" class="customURL">
                          https://ciiadhel-api-rest.herokuapp.com/api/airports/favorito/1/358240051111110
                         </a>
                     </p>
@@ -311,7 +290,7 @@
                     </ul>
 
                     <br />
-    
+
                     <p><strong> Formato de la respuesta JSON </strong></p>
                     <pre id="JSONGetFavoritebyId" class="previewJson"></pre>
                 </div>
@@ -322,10 +301,7 @@
                     <li>
                         <strong>Crear un nuevo favorito</strong>
                     </li>
-                    <p class="customURL">POST: <a 
-                        href=" https://ciiadhel-api-rest.herokuapp.com/api/airports/favorito" 
-                        target="_blank"
-                        class="customURL">
+                    <p class="customURL">POST: <a href=" https://ciiadhel-api-rest.herokuapp.com/api/airports/favorito" target="_blank" class="customURL">
                          https://ciiadhel-api-rest.herokuapp.com/api/airports/favorito
                         </a>
                     </p>
@@ -336,21 +312,18 @@
                     </ul>
 
                     <br />
-    
+
                     <p><strong> Formato del JSON para envio </strong></p>
                     <pre id="JSONCreateFavorite" class="previewJson"></pre>
                 </div>
-        
+
                 <br />
 
                 <div>
                     <li>
                         <strong>Existe Favorito</strong>
                     </li>
-                    <p class="customURL">GET: <a 
-                        href=" https://ciiadhel-api-rest.herokuapp.com/api/airports/favorito/1/358240051111110" 
-                        target="_blank"
-                        class="customURL">
+                    <p class="customURL">GET: <a href=" https://ciiadhel-api-rest.herokuapp.com/api/airports/favorito/1/358240051111110" target="_blank" class="customURL">
                          https://ciiadhel-api-rest.herokuapp.com/api/airports/favorito/1/358240051111110
                         </a>
                     </p>
@@ -368,21 +341,18 @@
                     </ul>
 
                     <br />
-    
+
                     <p><strong> Formato de la respuesta JSON </strong></p>
                     <pre id="JSONGetExistFavorite" class="previewJson"></pre>
                 </div>
-                
+
                 <br />
 
                 <div>
                     <li>
                         <strong>Eliminar Favorito</strong>
                     </li>
-                    <p class="customURL">DELETE: <a 
-                        href=" https://ciiadhel-api-rest.herokuapp.com/api/airports/favorito/1/358240051111110" 
-                        target="_blank"
-                        class="customURL">
+                    <p class="customURL">DELETE: <a href=" https://ciiadhel-api-rest.herokuapp.com/api/airports/favorito/1/358240051111110" target="_blank" class="customURL">
                          https://ciiadhel-api-rest.herokuapp.com/api/airports/favorito/1/358240051111110
                         </a>
                     </p>
@@ -400,11 +370,11 @@
                     </ul>
 
                     <br />
-    
+
                     <p><strong> Formato de la respuesta JSON </strong></p>
                     <pre id="JSONDeleteFavorite" class="previewJson"></pre>
                 </div>
-               
+
             </ol>
 
         </div>
@@ -416,7 +386,7 @@
             <p class="h5">Archivos (File)</p>
 
             <p>
-                Esta es la ruta de las archivos (Files) donde contiene las siguientes acciones: 
+                Esta es la ruta de las archivos (Files) donde contiene las siguientes acciones:
             </p>
 
             <ol>
@@ -434,7 +404,7 @@
 
                 <p><strong> Formato de la respuesta JSON </strong></p>
                 <pre id="JSONGetFile" class="previewJson"></pre>
-                
+
                 <br />
 
             </ol>
@@ -448,7 +418,7 @@
             <p class="h5">Notificationes (Notifications)</p>
 
             <p>
-                Esta es la ruta de las notificationes (Notifications) donde contiene las siguientes acciones: 
+                Esta es la ruta de las notificationes (Notifications) donde contiene las siguientes acciones:
             </p>
 
             <ol>
@@ -471,7 +441,7 @@
                     <p><strong> Formato del JSON para envio </strong></p>
                     <pre id="JSONSaveToken" class="previewJson"></pre>
                 </div>
-               
+
                 <br />
 
                 <div>
@@ -492,7 +462,7 @@
                     <p><strong> Formato de la respuesta JSON </strong></p>
                     <pre id="JSONGetAllTokens" class="previewJson"></pre>
                 </div>
-                
+
                 <br />
 
                 <div>
@@ -513,7 +483,7 @@
                     <p><strong> Formato del JSON para envio </strong></p>
                     <pre id="JSONSendNotification" class="previewJson"></pre>
                 </div>
-                
+
                 <br />
 
                 <div>
@@ -533,25 +503,25 @@
                             <li>No requiere ninguna autorización (No token)</li>
                         </ul>
                     </ul>
-    
+
                     <br />
 
                     <p><strong> Formato de la respuesta JSON (Preliminar) </strong></p>
                     <pre id="JSONGetExistIdentificador" class="previewJson"></pre>
-    
+
                 </div>
-               
+
             </ol>
         </div>
     </div>
 
     <figure>
-    
+
         <br />
         <br />
 
         <div class="col-2 col-sm-4">
-          <figcaption class="blockquote-footer">
+            <figcaption class="blockquote-footer">
                 Equipo de desarrollo CIIADHEL - 08 Abril, 2022
                 <ol>
                     <ul>Andrés Gumán Serrano</ul>
@@ -562,14 +532,14 @@
                 </ol>
             </figcaption>
         </div>
-        
-        
+
+
     </figure>
 
 
 </body>
 
 <script src="https://kit.fontawesome.com/62c9503ad6.js" crossorigin="anonymous"></script>
-<script src="./previewJSON.js" ></script>
+<script src="./previewJSON.js"></script>
 
 </html>
