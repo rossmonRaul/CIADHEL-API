@@ -16,10 +16,12 @@ exports.getConnetionTokens = void 0;
 const mssql_1 = __importDefault(require("mssql"));
 const config_1 = __importDefault(require("../config"));
 const dbSettings = {
-    user: config_1.default.user_db_tokens,
-    password: config_1.default.password_db_tokens,
-    server: config_1.default.server_db_tokens,
-    database: config_1.default.name_db_tokens,
+
+
+    user: 'db_a89ace_ciiadheltoken_admin',
+    password: 'Nuvian123',
+    server: 'SQL8002.site4now.net',
+    database: 'db_a89ace_ciiadheltoken',
     options: {
         encrypt: true,
         trustServerCertificate: true // change to true for local dev / self-signed certs

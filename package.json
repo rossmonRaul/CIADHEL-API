@@ -2,7 +2,7 @@
   "name": "ciadhel-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/dist/app.js",
   "scripts": {
     "test": "mocha src/dist/tests/airports.test.js --exit",
     "start": "node src/dist/app.js"
