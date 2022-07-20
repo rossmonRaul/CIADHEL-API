@@ -20,10 +20,10 @@ const config_1 = __importDefault(require("../config"));
 const dbSettings = {
 
 
-    user: '',
-    password: '',
-    server: '',
-    database: '',
+    user: 'db_a89ace_ciiadheltoken_admin',
+    password: 'Nuvian123',
+    server: 'SQL8002.site4now.net',
+    database: 'db_a89ace_ciiadheltoken',
     options: {
         encrypt: true,
         trustServerCertificate: true // change to true for local dev / self-signed certs

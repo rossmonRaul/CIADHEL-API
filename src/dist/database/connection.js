@@ -19,10 +19,10 @@ var sql = require('mssql');
 const config_1 = __importDefault(require("../config"));
 const dbSettings = {
 
-    user: '',
-    password: '',
-    server: '',
-    database: '',
+    user: 'db_a88a0a_administrativo_admin',
+    password: 'Nuvian123',
+    server: 'SQL8002.site4now.net',
+    database: 'db_a88a0a_administrativo',
     options: {
         encrypt: false,
         trustServerCertificate: true // change to true for local dev / self-signed certs
