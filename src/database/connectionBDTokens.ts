@@ -3,10 +3,10 @@ import sql from 'mssql';
 import config from '../config';
 
 const dbSettings = {
-    user     : config.user_db_tokens,
-    password : config.password_db_tokens,
-    server   : config.server_db_tokens,
-    database : config.name_db_tokens,
+    user     : 'db_a8e272_nuviantoken2_admin',
+    password : 'Nuvian123',
+    server   : 'SQL8001.site4now.net',
+    database : 'db_a8e272_nuviantoken2',
     options  : {
         encrypt: true, // for azure
         trustServerCertificate: true // change to true for local dev / self-signed certs
