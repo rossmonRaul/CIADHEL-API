@@ -20,10 +20,10 @@ const config_1 = __importDefault(require("../config"));
 const dbSettings = {
 
 
-    user: 'db_a8a760_nuviantoken_admin',
-    password: 'Nuvian123.',
-    server: 'sql5053.site4now.net',
-    database: 'db_a8a760_nuviantoken',
+    user: 'db_a8e272_nuviantoken2_admin',
+    password: 'Nuvian123',
+    server: 'SQL8001.site4now.net',
+    database: 'db_a8e272_nuviantoken2',
     options: {
         encrypt: true,
         trustServerCertificate: true // change to true for local dev / self-signed certs
