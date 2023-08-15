@@ -3,6 +3,9 @@ import { Request, Response } from 'express';
 import { getConnetion } from '../database/connection';
 import { getConnetionTokens } from '../database/connectionBDTokens';
 import sql, { MAX } from 'mssql';
+import * as fs from 'fs';
+import pdf from 'pdf-parse';
+
 
 
 export const getFavoritebyIdentificador = async (req: Request, res: Response) => {
@@ -338,9 +341,15 @@ export const getAnAirportById = async (req: Request, res: Response) => {
             .input('ID_Aeropuerto', sql.Int, id)
             .execute('SP_Notams_Mostrar_por_ID');
 
+        const { recordset: documentosData } = await pool.request()
+            .input('ID_Aeropuerto', sql.Int, id)
+            .execute('SP_TB_Documentos_Ver_por_ID');
+
+     
+
         pool.close();
 
-        if (data.length === 0) {
+        if (data.length === 0  ) {
 
             return res.status(404).json({
                 ok: false,
@@ -432,7 +441,20 @@ export const getAnAirportById = async (req: Request, res: Response) => {
             Numero_Telefono1,
             Numero_Telefono2,
             Horario
+
+
         };
+        const documento_pdf = documentosData.length > 0
+            ? {
+                ID_Aeropuerto,
+                ID_Documento: documentosData[0].ID_Documento,
+                nombre_pdf: documentosData[0].nombre_pdf,
+                Extension: documentosData[0].Extension,
+                Contenido: Buffer.from(documentosData[0].Contenido).toString('base64')
+            }
+            : null;
+        
+      
 
         return res.status(200).json({
             ok: true,
@@ -441,7 +463,9 @@ export const getAnAirportById = async (req: Request, res: Response) => {
             Frecuencias: frequencies,
             NOTAMS: notams,
             Pistas: runways,
-            Contacto: contact
+            Contacto: contact,
+            Documentos_pdf: documento_pdf
+           
         });
 
     } catch (err) {
@@ -488,9 +512,10 @@ export const getAirportBySearch = async (req: Request, res: Response) => {
         });
     }
 }
-// Code by RK
+
 export const putAnAirport = async (req: Request, res: Response) => {
     try {
+
         const { Ejecutables } = req.params; //executable SP_Orquestador required parameter Ejecutables (varchar)
         const { IDAeropuerto } = req.params;// required parameter IDAeropuerto
         let {  //variables
@@ -528,7 +553,12 @@ export const putAnAirport = async (req: Request, res: Response) => {
             TORA_Rwy_2,
             LDA_Rwy_1,
             LDA_Rwy_2,
+            nombre_pdf,
+            Extension,
+            Contenido
         } = req.body;
+
+        const dataBuffer = Buffer.from(Contenido, 'base64');
 
         const pool = await getConnetion(); //getting connection
 
@@ -570,7 +600,10 @@ export const putAnAirport = async (req: Request, res: Response) => {
             .input("TORA_Rwy_2", sql.Int, TORA_Rwy_2)
             .input("LDA_Rwy_1", sql.Int, LDA_Rwy_1)
             .input("LDA_Rwy_2", sql.Int, LDA_Rwy_2)
-            .execute("SP_Orquestador");
+            .input("nombre_pdf", sql.VarChar(255), nombre_pdf)
+            .input("Extension", sql.Char(4), Extension)
+            .input("Contenido", sql.VarBinary(MAX), dataBuffer)
+            .execute("SP_Orquestador2");
         pool.close();
 
         if (recordset === undefined) {

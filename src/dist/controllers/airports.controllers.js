@@ -3,7 +3,7 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
     if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-        desc = { enumerable: true, get: function() { return m[k]; } };
+      desc = { enumerable: true, get: function() { return m[k]; } };
     }
     Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
@@ -15,22 +15,18 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function(mod) {
+var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null)
-        for (var k in mod)
-            if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function(resolve) { resolve(value); }); }
-    return new(P || (P = Promise))(function(resolve, reject) {
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-
         function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
@@ -40,12 +36,10 @@ exports.putAnAirport = exports.getAirportBySearch = exports.getAnAirportById = e
 const connection_1 = require("../database/connection");
 const connectionBDTokens_1 = require("../database/connectionBDTokens");
 const mssql_1 = __importStar(require("mssql"));
-const puppeteer = require('puppeteer');
-const { json } = require("express");
-const getFavoritebyIdentificador = (req, res) => __awaiter(void 0, void 0, void 0, function*() {
+const getFavoritebyIdentificador = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { Identificador } = req.params;
-        const pool = yield(0, connectionBDTokens_1.getConnetionTokens)();
+        const pool = yield (0, connectionBDTokens_1.getConnetionTokens)();
         const { recordset } = yield pool.request()
             .input('Identificador', mssql_1.default.VarChar(450), Identificador)
             .execute('SP_AEFavoritos_Ver_por_Identificador');
@@ -61,7 +55,8 @@ const getFavoritebyIdentificador = (req, res) => __awaiter(void 0, void 0, void 
             ok: true,
             Recuperados: recordset
         });
-    } catch (err) {
+    }
+    catch (err) {
         console.error(err);
         return res.status(500).json({
             ok: false,
@@ -70,10 +65,10 @@ const getFavoritebyIdentificador = (req, res) => __awaiter(void 0, void 0, void 
     }
 });
 exports.getFavoritebyIdentificador = getFavoritebyIdentificador;
-const getValidateExist = (req, res) => __awaiter(void 0, void 0, void 0, function*() {
+const getValidateExist = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { ID_Aeropuerto, Identificador, } = req.params;
-        const pool = yield(0, connectionBDTokens_1.getConnetionTokens)();
+        const pool = yield (0, connectionBDTokens_1.getConnetionTokens)();
         const { recordset } = yield pool.request()
             .input('ID_Aeropuerto', mssql_1.default.Int, ID_Aeropuerto)
             .input('Identificador', mssql_1.default.VarChar(450), Identificador)
@@ -89,7 +84,8 @@ const getValidateExist = (req, res) => __awaiter(void 0, void 0, void 0, functio
             ok: true,
             msg: 'Ok'
         });
-    } catch (err) {
+    }
+    catch (err) {
         console.error(err);
         return res.status(500).json({
             ok: false,
@@ -98,11 +94,11 @@ const getValidateExist = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.getValidateExist = getValidateExist;
-const postFavoriteAirports = (req, res) => __awaiter(void 0, void 0, void 0, function*() {
+const postFavoriteAirports = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         //variables
         let { ID_Aeropuerto, Identificador, Nombre, Nombre_OACI, NombreICAO, Usuario_Creacion, } = req.body;
-        const pool = yield(0, connectionBDTokens_1.getConnetionTokens)();
+        const pool = yield (0, connectionBDTokens_1.getConnetionTokens)();
         const { recordset } = yield pool
             .request()
             .input("ID_Aeropuerto", mssql_1.default.Int, ID_Aeropuerto)
@@ -119,11 +115,12 @@ const postFavoriteAirports = (req, res) => __awaiter(void 0, void 0, void 0, fun
                 msg: 'Error insert a Favorite'
             });
         }
-        return res.status(201).json({
+        return res.status(200).json({
             ok: true,
             msg: 'Ok'
         });
-    } catch (err) {
+    }
+    catch (err) {
         console.error(err);
         return res.status(500).json({
             ok: false,
@@ -132,10 +129,10 @@ const postFavoriteAirports = (req, res) => __awaiter(void 0, void 0, void 0, fun
     }
 });
 exports.postFavoriteAirports = postFavoriteAirports;
-const deleteFavoriteAirports = (req, res) => __awaiter(void 0, void 0, void 0, function*() {
+const deleteFavoriteAirports = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { ID_Aeropuerto, Identificador } = req.params; // required parameter IDAeropuerto
     try {
-        const pool = yield(0, connectionBDTokens_1.getConnetionTokens)();
+        const pool = yield (0, connectionBDTokens_1.getConnetionTokens)();
         const { recordset } = yield pool
             .request()
             .input("ID_Aeropuerto", mssql_1.default.Int, ID_Aeropuerto)
@@ -152,7 +149,8 @@ const deleteFavoriteAirports = (req, res) => __awaiter(void 0, void 0, void 0, f
             ok: true,
             msg: 'Ok'
         });
-    } catch (err) {
+    }
+    catch (err) {
         console.error(err);
         return res.status(500).json({
             ok: false,
@@ -161,9 +159,9 @@ const deleteFavoriteAirports = (req, res) => __awaiter(void 0, void 0, void 0, f
     }
 });
 exports.deleteFavoriteAirports = deleteFavoriteAirports;
-const getAllAirports = (req, res) => __awaiter(void 0, void 0, void 0, function*() {
+const getAllAirports = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const pool = yield(0, connection_1.getConnetion)();
+        const pool = yield (0, connection_1.getConnetion)();
         const { recordset } = yield pool.request().execute('SP_Aeropuerto_MostrarRelevantes');
         pool.close();
         if (recordset.length === 0) {
@@ -178,7 +176,8 @@ const getAllAirports = (req, res) => __awaiter(void 0, void 0, void 0, function*
             length: recordset.length,
             airports: recordset
         });
-    } catch (err) {
+    }
+    catch (err) {
         console.error(err);
         return res.status(500).json({
             ok: false,
@@ -187,9 +186,9 @@ const getAllAirports = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getAllAirports = getAllAirports;
-const getLengthAirports = (req, res) => __awaiter(void 0, void 0, void 0, function*() {
+const getLengthAirports = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const pool = yield(0, connection_1.getConnetion)();
+        const pool = yield (0, connection_1.getConnetion)();
         const { recordset } = yield pool.request().execute('SP_Aeropuerto_Mostrar_Cantidad');
         pool.close();
         if (recordset.length === 0) {
@@ -203,7 +202,8 @@ const getLengthAirports = (req, res) => __awaiter(void 0, void 0, void 0, functi
             ok: true,
             size: Numero_aeropuertos
         });
-    } catch (err) {
+    }
+    catch (err) {
         console.error(err);
         return res.status(500).json({
             ok: false,
@@ -212,12 +212,12 @@ const getLengthAirports = (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
 });
 exports.getLengthAirports = getLengthAirports;
-const getIsUpdateAirport = (req, res) => __awaiter(void 0, void 0, void 0, function*() {
+const getIsUpdateAirport = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let isUpdate = false;
         const { id } = req.params;
         const { lastDate } = req.body;
-        const pool = yield(0, connection_1.getConnetion)();
+        const pool = yield (0, connection_1.getConnetion)();
         const { recordset } = yield pool.request()
             .input('ID_Aeropuerto', mssql_1.default.Int, id)
             .execute('SP_Aeropuerto_Mostra_UltimaAcualizacion');
@@ -238,7 +238,8 @@ const getIsUpdateAirport = (req, res) => __awaiter(void 0, void 0, void 0, funct
             ok: true,
             update: isUpdate
         });
-    } catch (err) {
+    }
+    catch (err) {
         console.error(err);
         return res.status(500).json({
             ok: false,
@@ -247,10 +248,10 @@ const getIsUpdateAirport = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.getIsUpdateAirport = getIsUpdateAirport;
-const getAllAirportByName = (req, res) => __awaiter(void 0, void 0, void 0, function*() {
+const getAllAirportByName = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name } = req.params;
-        const pool = yield(0, connection_1.getConnetion)();
+        const pool = yield (0, connection_1.getConnetion)();
         const { recordset } = yield pool.request()
             .input('Nombre', mssql_1.default.VarChar(200), name)
             .execute('SP_Aeropuerto_Buscador');
@@ -266,7 +267,8 @@ const getAllAirportByName = (req, res) => __awaiter(void 0, void 0, void 0, func
             length: recordset.length,
             airports: recordset
         });
-    } catch (err) {
+    }
+    catch (err) {
         console.error(err);
         return res.status(500).json({
             ok: false,
@@ -275,10 +277,10 @@ const getAllAirportByName = (req, res) => __awaiter(void 0, void 0, void 0, func
     }
 });
 exports.getAllAirportByName = getAllAirportByName;
-const getAnAirportById = (req, res) => __awaiter(void 0, void 0, void 0, function*() {
+const getAnAirportById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const pool = yield(0, connection_1.getConnetion)();
+        const pool = yield (0, connection_1.getConnetion)();
         const { recordset: data } = yield pool.request()
             .input('ID_Aeropuerto', mssql_1.default.Int, id)
             .execute('SP_Aeropuerto_Mostrar_4');
@@ -288,6 +290,9 @@ const getAnAirportById = (req, res) => __awaiter(void 0, void 0, void 0, functio
         const { recordset: notams } = yield pool.request()
             .input('ID_Aeropuerto', mssql_1.default.Int, id)
             .execute('SP_Notams_Mostrar_por_ID');
+        const { recordset: documentosData } = yield pool.request()
+            .input('ID_Aeropuerto', mssql_1.default.Int, id)
+            .execute('SP_TB_Documentos_Ver_por_ID');
         pool.close();
         if (data.length === 0) {
             return res.status(404).json({
@@ -343,6 +348,15 @@ const getAnAirportById = (req, res) => __awaiter(void 0, void 0, void 0, functio
             Numero_Telefono2,
             Horario
         };
+        const documento_pdf = documentosData.length > 0
+            ? {
+                ID_Aeropuerto,
+                ID_Documento: documentosData[0].ID_Documento,
+                nombre_pdf: documentosData[0].nombre_pdf,
+                Extension: documentosData[0].Extension,
+                Contenido: Buffer.from(documentosData[0].Contenido).toString('base64')
+            }
+            : null;
         return res.status(200).json({
             ok: true,
             Aeropuerto: airport,
@@ -350,9 +364,11 @@ const getAnAirportById = (req, res) => __awaiter(void 0, void 0, void 0, functio
             Frecuencias: frequencies,
             NOTAMS: notams,
             Pistas: runways,
-            Contacto: contact
+            Contacto: contact,
+            Documentos_pdf: documento_pdf
         });
-    } catch (err) {
+    }
+    catch (err) {
         console.error(err);
         return res.status(500).json({
             ok: false,
@@ -361,10 +377,10 @@ const getAnAirportById = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.getAnAirportById = getAnAirportById;
-const getAirportBySearch = (req, res) => __awaiter(void 0, void 0, void 0, function*() {
+const getAirportBySearch = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name } = req.params;
-        const pool = yield(0, connection_1.getConnetion)();
+        const pool = yield (0, connection_1.getConnetion)();
         const { recordset } = yield pool.request()
             .input('Nombre', mssql_1.default.VarChar(200), name)
             .execute('SP_Aeropuerto_Buscador');
@@ -380,7 +396,8 @@ const getAirportBySearch = (req, res) => __awaiter(void 0, void 0, void 0, funct
             length: recordset.length,
             airports: recordset
         });
-    } catch (err) {
+    }
+    catch (err) {
         console.error(err);
         return res.status(500).json({
             ok: false,
@@ -389,48 +406,14 @@ const getAirportBySearch = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.getAirportBySearch = getAirportBySearch;
-// Code by RK
-const putAnAirport = (req, res) => __awaiter(void 0, void 0, void 0, function*() {
+const putAnAirport = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { Ejecutables } = req.params; //executable SP_Orquestador required parameter Ejecutables (varchar)
         const { IDAeropuerto } = req.params; // required parameter IDAeropuerto
         let { //variables
-            Usario,
-            Nombre_OACI,
-            NombreICAO,
-            Estado_Aeropuerto,
-            Notam,
-            Publico,
-            Controlado,
-            Coordenada,
-            Info_Torre,
-            Info_General,
-            Espacio_Aereo,
-            Combustible,
-            Norma_General,
-            Norma_Particular,
-            Direccion_Exacta,
-            Numero_Telefono1,
-            Numero_Telefono2,
-            Horario,
-            ATIS,
-            GRND,
-            TWR,
-            EMERGENCY,
-            Otras,
-            Pista,
-            Elevacion,
-            Superficie_Pista,
-            ASDA_Rwy_1,
-            ASDA_Rwy_2,
-            TODA_Rwy_1,
-            TODA_Rwy_2,
-            TORA_Rwy_1,
-            TORA_Rwy_2,
-            LDA_Rwy_1,
-            LDA_Rwy_2,
-        } = req.body;
-        const pool = yield(0, connection_1.getConnetion)(); //getting connection
+        Usario, Nombre_OACI, NombreICAO, Estado_Aeropuerto, Notam, Publico, Controlado, Coordenada, Info_Torre, Info_General, Espacio_Aereo, Combustible, Norma_General, Norma_Particular, Direccion_Exacta, Numero_Telefono1, Numero_Telefono2, Horario, ATIS, GRND, TWR, EMERGENCY, Otras, Pista, Elevacion, Superficie_Pista, ASDA_Rwy_1, ASDA_Rwy_2, TODA_Rwy_1, TODA_Rwy_2, TORA_Rwy_1, TORA_Rwy_2, LDA_Rwy_1, LDA_Rwy_2, nombre_pdf, Extension, Contenido } = req.body;
+        const dataBuffer = Buffer.from(Contenido, 'base64');
+        const pool = yield (0, connection_1.getConnetion)(); //getting connection
         const { recordset } = yield pool //send all input parameters to SP_Orquestador
             .request()
             .input("Ejecutables", mssql_1.default.VarChar(20), Ejecutables)
@@ -469,7 +452,10 @@ const putAnAirport = (req, res) => __awaiter(void 0, void 0, void 0, function*()
             .input("TORA_Rwy_2", mssql_1.default.Int, TORA_Rwy_2)
             .input("LDA_Rwy_1", mssql_1.default.Int, LDA_Rwy_1)
             .input("LDA_Rwy_2", mssql_1.default.Int, LDA_Rwy_2)
-            .execute("SP_Orquestador");
+            .input("nombre_pdf", mssql_1.default.VarChar(255), nombre_pdf)
+            .input("Extension", mssql_1.default.Char(4), Extension)
+            .input("Contenido", mssql_1.default.VarBinary(mssql_1.MAX), dataBuffer)
+            .execute("SP_Orquestador2");
         pool.close();
         if (recordset === undefined) {
             return res.status(404).json({
@@ -482,7 +468,8 @@ const putAnAirport = (req, res) => __awaiter(void 0, void 0, void 0, function*()
             ok: true,
             msg: recordset,
         });
-    } catch (err) {
+    }
+    catch (err) {
         console.error(err);
         return res.status(500).json({
             ok: false,
@@ -491,54 +478,4 @@ const putAnAirport = (req, res) => __awaiter(void 0, void 0, void 0, function*()
     }
 });
 exports.putAnAirport = putAnAirport;
-const getMeteorologyByScrap = async(req, res) => {
-    try {
-        const { nombre } = req.params;
-
-        const browser = await puppeteer.launch();
-
-        const page = await browser.newPage();
-        const page2 = await browser.newPage();
-
-        await page.goto(`https://metar-taf.com/es/metar-view/${nombre}`);
-        await page2.goto(`https://metar-taf.com/es/taf/${nombre}`)
-
-        const meteorology = {};
-
-        const metar = await page.evaluate(() => {
-
-            const tmp = document.querySelector('#metar code').innerText;
-            // tmp.author = document.querySelector('.author a').innerText;
-            return tmp;
-        })
-        meteorology.metar = metar;
-
-        const taf = await page2.evaluate(() => {
-            // const tmp = {};
-            const tmp = document.querySelector('#taf code').innerText;
-            // tmp.author = document.querySelector('.author a').innerText;
-            return tmp;
-        })
-        meteorology.taf = taf;
-        await browser.close();
-
-        if (meteorology === undefined) {
-            return res.status(404).json({
-                ok: false,
-                msg: 'There are no airports meteorology info '
-            });
-        }
-        return res.status(200).json({
-            ok: true,
-            airports: meteorology
-        });
-    } catch (err) {
-        console.error(err);
-        return res.status(500).json({
-            ok: false,
-            msg: 'Error on get an airports'
-        });
-    }
-};
-exports.getMeteorologyByScrap = getMeteorologyByScrap;
 //# sourceMappingURL=airports.controllers.js.map

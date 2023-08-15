@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\controllers",
+    "\\src\\dist",
+    "\\src\\dist\\controllers",
+    "\\src\\dist\\models",
+    "\\src\\models",
+    "\\src\\routes"
+  ],
+  "SelectedNode": "\\src\\dist\\controllers\\airports.controllers.js",
+  "PreviewInSolutionExplorer": false
+}

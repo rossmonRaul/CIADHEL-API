@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
+const body_parser_1 = __importDefault(require("body-parser"));
 const config_1 = __importDefault(require("../config"));
 const airports_routes_1 = __importDefault(require("../routes/airports.routes"));
 const users_routes_1 = __importDefault(require("../routes/users.routes"));
@@ -28,10 +29,11 @@ class Server {
     middlewares() {
         // CORS
         this.app.use((0, cors_1.default)());
-        // Lectura del body
-        this.app.use(express_1.default.json());
         // Share folder
         this.app.use(express_1.default.static('src/public'));
+        this.app.use(express_1.default.json({ limit: '100mb' }));
+        this.app.use(express_1.default.urlencoded({ limit: '100mb' }));
+        this.app.use(body_parser_1.default.urlencoded({ limit: '100mb', extended: true }));
     }
     routes() {
         this.app.use(this.apiPaths.airports, airports_routes_1.default);

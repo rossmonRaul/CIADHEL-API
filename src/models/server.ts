@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 
 import config from '../config';
 import airportRoutes from '../routes/airports.routes';
@@ -33,11 +34,15 @@ class Server {
         // CORS
         this.app.use( cors() );
 
-        // Lectura del body
-        this.app.use( express.json() );
+ 
 
         // Share folder
-        this.app.use( express.static('src/public') );
+        this.app.use(express.static('src/public'));
+        this.app.use(express.json({ limit: '100mb' }));
+        this.app.use(express.urlencoded({ limit: '100mb' }));
+       
+        this.app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
+
     }
 
     routes() {
